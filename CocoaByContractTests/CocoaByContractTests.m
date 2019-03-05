@@ -23,15 +23,17 @@
 
 @implementation CocoaByContractTests
 {
-    CanFailAnyTime *target;
+    CanFailAnyTime *target, *enforcedTarget;
 }
 
 - (void)setUp {
     target = [CanFailAnyTime new];
+    enforcedTarget = [ContractEnforcer enforcerWithTarget:target];
 }
 
 - (void)tearDown {
     target = nil;
+    enforcedTarget = nil;
 }
 
 - (void)testMethodsWithoutContractAreForwardedToReceiver {
@@ -50,6 +52,16 @@
 - (void)testTargetCreatedWhenInvariantPassesOnSetUp {
     target.failingInvariant = NO;
     XCTAssertNoThrow([ContractEnforcer enforcerWithTarget:target], @"invariant passes on setup, OK");
+}
+
+- (void)testInvariantFailureCausesExceptionOnMessageSend {
+    target.failingInvariant = YES;
+    XCTAssertThrows([enforcedTarget command], @"invariant fails on message, throw");
+}
+
+- (void)testInvariantPassOnMessageSendDoesNotThrow {
+    target.failingInvariant = NO;
+    XCTAssertNoThrow([enforcedTarget command], @"invariant passes on message, OK");
 }
 
 @end

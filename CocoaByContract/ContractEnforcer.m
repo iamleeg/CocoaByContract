@@ -35,7 +35,13 @@
 
 - (void)forwardInvocation:(NSInvocation *)invocation
 {
+    NSString *methodName = NSStringFromSelector([invocation selector]);
+
     [invocation invokeWithTarget:_receiver];
+
+    if ([_receiver respondsToSelector:@selector(invariant)]) {
+        NSAssert([_receiver invariant], @"Expect invariant to still hold after [%@ %@]", _receiver, methodName);
+    }
 }
 
 + enforcerWithTarget:target
