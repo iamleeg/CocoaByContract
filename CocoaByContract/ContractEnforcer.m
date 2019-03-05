@@ -36,6 +36,22 @@
 - (void)forwardInvocation:(NSInvocation *)invocation
 {
     NSString *methodName = NSStringFromSelector([invocation selector]);
+    NSString *preMethodName = [NSString stringWithFormat:@"pre_%@", methodName];
+    SEL preMethod = NSSelectorFromString(preMethodName);
+    if ([_receiver respondsToSelector:preMethod]) {
+        NSMethodSignature *preSignature = [_receiver methodSignatureForSelector:preMethod];
+        NSInvocation *invokePrecondition = [NSInvocation invocationWithMethodSignature:preSignature];
+        for (int i = 2; i < [preSignature numberOfArguments]; i++) {
+            void *argument = NULL;
+            [invocation getArgument:&argument atIndex:i];
+            [invokePrecondition setArgument:&argument atIndex:i];
+        }
+        [invokePrecondition setSelector:preMethod];
+        [invokePrecondition invokeWithTarget:_receiver];
+        BOOL satisfied = NO;
+        [invokePrecondition getReturnValue:&satisfied];
+        NSAssert(satisfied, @"precondition failure invoking [%@ %@]", _receiver, methodName);
+    }
 
     [invocation invokeWithTarget:_receiver];
 
