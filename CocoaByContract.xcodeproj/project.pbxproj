@@ -32,6 +32,8 @@
 		9818C57E222E712A0014D12C /* CocoaByContractTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CocoaByContractTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9818C580222E712A0014D12C /* CocoaByContractTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CocoaByContractTests.m; sourceTree = "<group>"; };
 		9818C582222E712A0014D12C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9818C589222E79590014D12C /* COPYING */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		9818C58A222E797A0014D12C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,8 @@
 		9818C563222E70BB0014D12C = {
 			isa = PBXGroup;
 			children = (
+				9818C589222E79590014D12C /* COPYING */,
+				9818C58A222E797A0014D12C /* README.md */,
 				9818C56E222E70BB0014D12C /* CocoaByContract */,
 				9818C57F222E712A0014D12C /* CocoaByContractTests */,
 				9818C56D222E70BB0014D12C /* Products */,
