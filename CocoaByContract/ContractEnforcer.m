@@ -8,6 +8,12 @@
 
 #import "ContractEnforcer.h"
 
+@interface NSObject (DesignByContract)
+
+- (BOOL)invariant;
+
+@end
+
 @implementation ContractEnforcer
 {
     id _receiver;
@@ -16,6 +22,9 @@
 - (id)initWithTarget:(id)target
 {
     _receiver = target;
+    if ([_receiver respondsToSelector:@selector(invariant)]) {
+        NSAssert([_receiver invariant], @"Expect the invariant to initially hold");
+    }
     return self;
 }
 
