@@ -6,9 +6,10 @@
 //  Copyright © 2019 Labrary, Ltd.
 //
 
-#ifndef CocoaByContract_h
-#define CocoaByContract_h
+#import <Foundation/Foundation.h>
 
-#import "ContractEnforcer.h"
+@interface ContractEnforcer<T> : NSProxy
 
-#endif /* CocoaByContract_h */
++ (T)enforcerWithTarget:(T)target;
+
+@end

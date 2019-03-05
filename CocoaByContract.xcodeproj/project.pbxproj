@@ -7,14 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9818C570222E70BB0014D12C /* CocoaByContract.h in Headers */ = {isa = PBXBuildFile; fileRef = 9818C56F222E70BB0014D12C /* CocoaByContract.h */; };
-		9818C572222E70BB0014D12C /* CocoaByContract.m in Sources */ = {isa = PBXBuildFile; fileRef = 9818C571222E70BB0014D12C /* CocoaByContract.m */; };
+		9818C570222E70BB0014D12C /* ContractEnforcer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9818C56F222E70BB0014D12C /* ContractEnforcer.h */; };
+		9818C572222E70BB0014D12C /* ContractEnforcer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9818C571222E70BB0014D12C /* ContractEnforcer.m */; };
+		9818C579222E70E60014D12C /* CocoaByContract.h in Headers */ = {isa = PBXBuildFile; fileRef = 9818C578222E70E60014D12C /* CocoaByContract.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9818C581222E712A0014D12C /* CocoaByContractTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9818C580222E712A0014D12C /* CocoaByContractTests.m */; };
+		9818C583222E712A0014D12C /* libCocoaByContract.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9818C56C222E70BB0014D12C /* libCocoaByContract.dylib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9818C584222E712A0014D12C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9818C564222E70BB0014D12C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9818C56B222E70BB0014D12C;
+			remoteInfo = CocoaByContract;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9818C56C222E70BB0014D12C /* libCocoaByContract.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libCocoaByContract.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9818C56F222E70BB0014D12C /* CocoaByContract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaByContract.h; sourceTree = "<group>"; };
-		9818C571222E70BB0014D12C /* CocoaByContract.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CocoaByContract.m; sourceTree = "<group>"; };
+		9818C56F222E70BB0014D12C /* ContractEnforcer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContractEnforcer.h; sourceTree = "<group>"; };
+		9818C571222E70BB0014D12C /* ContractEnforcer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContractEnforcer.m; sourceTree = "<group>"; };
+		9818C578222E70E60014D12C /* CocoaByContract.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaByContract.h; sourceTree = "<group>"; };
+		9818C57E222E712A0014D12C /* CocoaByContractTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CocoaByContractTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9818C580222E712A0014D12C /* CocoaByContractTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CocoaByContractTests.m; sourceTree = "<group>"; };
+		9818C582222E712A0014D12C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -25,6 +42,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9818C57B222E712A0014D12C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9818C583222E712A0014D12C /* libCocoaByContract.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -32,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				9818C56E222E70BB0014D12C /* CocoaByContract */,
+				9818C57F222E712A0014D12C /* CocoaByContractTests */,
 				9818C56D222E70BB0014D12C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				9818C56C222E70BB0014D12C /* libCocoaByContract.dylib */,
+				9818C57E222E712A0014D12C /* CocoaByContractTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -47,10 +74,20 @@
 		9818C56E222E70BB0014D12C /* CocoaByContract */ = {
 			isa = PBXGroup;
 			children = (
-				9818C56F222E70BB0014D12C /* CocoaByContract.h */,
-				9818C571222E70BB0014D12C /* CocoaByContract.m */,
+				9818C56F222E70BB0014D12C /* ContractEnforcer.h */,
+				9818C571222E70BB0014D12C /* ContractEnforcer.m */,
+				9818C578222E70E60014D12C /* CocoaByContract.h */,
 			);
 			path = CocoaByContract;
+			sourceTree = "<group>";
+		};
+		9818C57F222E712A0014D12C /* CocoaByContractTests */ = {
+			isa = PBXGroup;
+			children = (
+				9818C580222E712A0014D12C /* CocoaByContractTests.m */,
+				9818C582222E712A0014D12C /* Info.plist */,
+			);
+			path = CocoaByContractTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -60,7 +97,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9818C570222E70BB0014D12C /* CocoaByContract.h in Headers */,
+				9818C570222E70BB0014D12C /* ContractEnforcer.h in Headers */,
+				9818C579222E70E60014D12C /* CocoaByContract.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +122,24 @@
 			productReference = 9818C56C222E70BB0014D12C /* libCocoaByContract.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
+		9818C57D222E712A0014D12C /* CocoaByContractTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9818C586222E712A0014D12C /* Build configuration list for PBXNativeTarget "CocoaByContractTests" */;
+			buildPhases = (
+				9818C57A222E712A0014D12C /* Sources */,
+				9818C57B222E712A0014D12C /* Frameworks */,
+				9818C57C222E712A0014D12C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9818C585222E712A0014D12C /* PBXTargetDependency */,
+			);
+			name = CocoaByContractTests;
+			productName = CocoaByContractTests;
+			productReference = 9818C57E222E712A0014D12C /* CocoaByContractTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -94,6 +150,9 @@
 				ORGANIZATIONNAME = "Labrary, Ltd.";
 				TargetAttributes = {
 					9818C56B222E70BB0014D12C = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					9818C57D222E712A0014D12C = {
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
@@ -111,20 +170,47 @@
 			projectRoot = "";
 			targets = (
 				9818C56B222E70BB0014D12C /* CocoaByContract */,
+				9818C57D222E712A0014D12C /* CocoaByContractTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9818C57C222E712A0014D12C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9818C569222E70BB0014D12C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9818C572222E70BB0014D12C /* CocoaByContract.m in Sources */,
+				9818C572222E70BB0014D12C /* ContractEnforcer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9818C57A222E712A0014D12C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9818C581222E712A0014D12C /* CocoaByContractTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9818C585222E712A0014D12C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9818C56B222E70BB0014D12C /* CocoaByContract */;
+			targetProxy = 9818C584222E712A0014D12C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9818C573222E70BB0014D12C /* Debug */ = {
@@ -262,6 +348,38 @@
 			};
 			name = Release;
 		};
+		9818C587222E712A0014D12C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CocoaByContractTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = online.labrary.CocoaByContractTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9818C588222E712A0014D12C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CocoaByContractTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = online.labrary.CocoaByContractTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -279,6 +397,15 @@
 			buildConfigurations = (
 				9818C576222E70BB0014D12C /* Debug */,
 				9818C577222E70BB0014D12C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9818C586222E712A0014D12C /* Build configuration list for PBXNativeTarget "CocoaByContractTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9818C587222E712A0014D12C /* Debug */,
+				9818C588222E712A0014D12C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
