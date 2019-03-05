@@ -55,6 +55,24 @@
 
     [invocation invokeWithTarget:_receiver];
 
+    NSString *postMethodName;
+    postMethodName = [NSString stringWithFormat:@"post_%@", methodName];
+    SEL postMethod = NSSelectorFromString(postMethodName);
+    if ([_receiver respondsToSelector:postMethod]) {
+        NSMethodSignature *postSignature = [_receiver methodSignatureForSelector:postMethod];
+        NSInvocation *invokePostcondition = [NSInvocation invocationWithMethodSignature:postSignature];
+        for (int i = 2; i < [[invocation methodSignature] numberOfArguments]; i++) {
+            void *argument = NULL;
+            [invocation getArgument:&argument atIndex:i];
+            [invokePostcondition setArgument:&argument atIndex:i];
+        }
+        [invokePostcondition setSelector:postMethod];
+        [invokePostcondition invokeWithTarget:_receiver];
+        BOOL satisfied = NO;
+        [invokePostcondition getReturnValue:&satisfied];
+        NSAssert(satisfied, @"postcondition failure invoking [%@ %@]", _receiver, methodName);
+    }
+
     if ([_receiver respondsToSelector:@selector(invariant)]) {
         NSAssert([_receiver invariant], @"Expect invariant to still hold after [%@ %@]", _receiver, methodName);
     }

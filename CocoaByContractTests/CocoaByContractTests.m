@@ -11,7 +11,7 @@
 
 @interface CanFailAnyTime : NSObject
 
-@property (nonatomic, readwrite, assign) BOOL failingInvariant, failingPrecondition;
+@property (nonatomic, readwrite, assign) BOOL failingInvariant, failingPrecondition, failingPostcondition;
 
 - (void)command;
 
@@ -74,6 +74,16 @@
     XCTAssertNoThrow([enforcedTarget command], @"precondition passes, OK");
 }
 
+- (void)testPostconditionFailureCausesExceptionOnMessageSend {
+    target.failingPostcondition = YES;
+    XCTAssertThrows([enforcedTarget command], @"postcondition fails, throw");
+}
+
+- (void)testPostconditionPassOnMessageSendDoesNotThrow {
+    target.failingPostcondition = NO;
+    XCTAssertNoThrow([enforcedTarget command], @"postcondition passes, OK");
+}
+
 @end
 
 @implementation CanFailAnyTime
@@ -82,5 +92,6 @@
 
 - (BOOL)pre_command { return !self.failingPrecondition; }
 - (void)command {}
+- (BOOL)post_command { return !self.failingPostcondition; }
 
 @end
