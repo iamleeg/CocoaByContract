@@ -55,8 +55,13 @@
 
     [invocation invokeWithTarget:_receiver];
 
+    BOOL hasReturn = strcmp([[invocation methodSignature] methodReturnType], "v");
     NSString *postMethodName;
-    postMethodName = [NSString stringWithFormat:@"post_%@", methodName];
+    if (hasReturn) {
+        postMethodName = [NSString stringWithFormat:@"post_%@returning:", methodName];
+    } else {
+        postMethodName = [NSString stringWithFormat:@"post_%@", methodName];
+    }
     SEL postMethod = NSSelectorFromString(postMethodName);
     if ([_receiver respondsToSelector:postMethod]) {
         NSMethodSignature *postSignature = [_receiver methodSignatureForSelector:postMethod];
@@ -65,6 +70,11 @@
             void *argument = NULL;
             [invocation getArgument:&argument atIndex:i];
             [invokePostcondition setArgument:&argument atIndex:i];
+        }
+        if (hasReturn) {
+            void *retVal;
+            [invocation getReturnValue:&retVal];
+            [invokePostcondition setArgument:&retVal atIndex:[postSignature numberOfArguments] - 1];
         }
         [invokePostcondition setSelector:postMethod];
         [invokePostcondition invokeWithTarget:_receiver];

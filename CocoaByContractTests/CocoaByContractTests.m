@@ -12,8 +12,10 @@
 @interface CanFailAnyTime : NSObject
 
 @property (nonatomic, readwrite, assign) BOOL failingInvariant, failingPrecondition, failingPostcondition;
+@property (nonatomic, strong) id queryReturn;
 
 - (void)command;
+- query;
 
 @end
 
@@ -84,6 +86,12 @@
     XCTAssertNoThrow([enforcedTarget command], @"postcondition passes, OK");
 }
 
+- (void)testPostconditionHasAccessToMethodReturnValue {
+    target.failingPostcondition = NO;
+    id result = [enforcedTarget query];
+    id storedResult = [enforcedTarget queryReturn];
+    XCTAssertEqualObjects(result, storedResult, @"got access to the return value in the postcondition test");
+}
 @end
 
 @implementation CanFailAnyTime
@@ -94,4 +102,6 @@
 - (void)command {}
 - (BOOL)post_command { return !self.failingPostcondition; }
 
+- query { return @"Pass"; }
+- (BOOL)post_queryreturning:retVal { self.queryReturn = retVal; return !self.failingPostcondition; }
 @end
